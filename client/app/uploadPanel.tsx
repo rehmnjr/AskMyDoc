@@ -1,4 +1,3 @@
-import { METHODS } from "http";
 import { IoCloudUploadOutline } from "react-icons/io5";
 
 export default function uploadPanel() {

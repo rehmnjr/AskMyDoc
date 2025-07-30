@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "dev:worker": "nodemon worker.js"
   },
   "keywords": [],
   "author": "",
@@ -17,9 +18,15 @@
     "@types/node": "^24.1.0"
   },
   "dependencies": {
+    "bullmq": "^5.56.8",
     "cors": "^2.8.5",
+    "dotenv": "^17.2.1",
     "express": "^5.1.0",
+    "formdata-node": "^6.0.3",
+    "llama-parse": "^0.1.0",
+    "llamaindex": "^0.11.23",
     "multer": "^2.0.2",
-    "nodemon": "^3.1.10"
+    "nodemon": "^3.1.10",
+    "undici": "^7.12.0"
   }
 }
