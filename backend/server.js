@@ -28,6 +28,11 @@ app.use((req, res, next) => {
   next();
 });
 
+// Health check endpoint for Render.com
+app.get('/health', (req, res) => {
+  res.status(200).json({ status: 'ok', message: 'Server is running' });
+});
+
 // Configure multer for file uploads
 const upload = multer({
   storage: multer.diskStorage({
