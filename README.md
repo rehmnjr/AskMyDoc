@@ -17,6 +17,7 @@ This project is configured for easy deployment on Render.com using the `render.y
 
 1. A Render.com account
 2. A Google Gemini API key
+3. Clerk.com account for authentication (sign up at https://clerk.com)
 
 ### Deployment Steps
 
@@ -31,6 +32,9 @@ This project is configured for easy deployment on Render.com using the `render.y
 3. **Configure environment variables**:
    - For the backend service, you'll need to set:
      - `GEMINI_API_KEY`: Your Google Gemini API key
+   - For the frontend service, you'll need to set:
+     - `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY`: Your Clerk publishable key
+     - `CLERK_SECRET_KEY`: Your Clerk secret key
 
 4. **Deploy the services**:
    - Render will automatically deploy both the frontend and backend services
@@ -64,7 +68,9 @@ If you prefer to deploy the services manually:
    - **Build Command**: `cd frontend && npm install && npm run build`
    - **Start Command**: `cd frontend && npm start`
    - **Environment Variables**:
-     - `NEXT_PUBLIC_API_URL`: The URL of your backend service (e.g., `https://askmydoc-backend.onrender.com`)
+     - `NEXT_PUBLIC_API_URL`: The URL of your backend service (e.g., `https://askmydoc-backend-lr1q.onrender.com`)
+     - `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY`: Your Clerk publishable key
+     - `CLERK_SECRET_KEY`: Your Clerk secret key
 
 ## Local Development
 
@@ -78,9 +84,33 @@ If you prefer to deploy the services manually:
 ### Frontend
 
 1. Navigate to the frontend directory: `cd frontend`
-2. Create a `.env.local` file based on `.env.example`
+2. Create a `.env.local` file based on `.env.example` with the following variables:
+   - `NEXT_PUBLIC_API_URL`: URL of your backend (e.g., `http://localhost:5000`)
+   - `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY`: Your Clerk publishable key
+   - `CLERK_SECRET_KEY`: Your Clerk secret key
 3. Install dependencies: `npm install`
 4. Start the development server: `npm run dev`
+
+## Troubleshooting
+
+### Common Issues
+
+1. **"Not Found" error on frontend**
+   - Ensure Clerk authentication is properly configured with valid API keys
+   - Check that you've set both `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY` and `CLERK_SECRET_KEY`
+   - Verify that your Clerk application settings allow the deployed domain
+
+2. **"Cannot GET /" error on backend**
+   - This should be fixed with the root route handler, but if it persists, check your backend logs
+   - Ensure the backend service is properly deployed and running
+
+3. **CORS errors in console**
+   - Verify that the backend CORS configuration includes your frontend URL without a trailing slash
+   - Check that the `NEXT_PUBLIC_API_URL` in your frontend environment points to the correct backend URL
+
+4. **Authentication issues**
+   - Make sure you've created a Clerk application and configured the authentication properly
+   - Check that your Clerk application's allowed URLs include your deployed frontend URL
 
 ## License
 

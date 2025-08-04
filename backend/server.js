@@ -16,7 +16,7 @@ const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(cors({
-  origin: ['https://askmydoc-7xfu.onrender.com/', 'http://localhost:3000'],
+  origin: ['https://askmydoc-7xfu.onrender.com', 'https://askmydoc-frontend.onrender.com', 'http://localhost:3000'],
   methods: ['GET', 'POST'],
   credentials: true
 }));
@@ -31,6 +31,19 @@ app.use((req, res, next) => {
 // Health check endpoint for Render.com
 app.get('/health', (req, res) => {
   res.status(200).json({ status: 'ok', message: 'Server is running' });
+});
+
+// Root route handler
+app.get('/', (req, res) => {
+  res.status(200).json({
+    message: 'AskMyDoc API is running',
+    endpoints: {
+      health: '/health',
+      status: '/api/status',
+      upload: '/api/upload',
+      query: '/api/query'
+    }
+  });
 });
 
 // Configure multer for file uploads
