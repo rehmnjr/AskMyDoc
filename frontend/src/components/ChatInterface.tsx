@@ -57,7 +57,7 @@ const ChatInterface: React.FC<ChatInterfaceProps> = ({ hasDocuments }) => {
       // Make sure the API URL is correctly set in .env.local
       // For Next.js, environment variables prefixed with NEXT_PUBLIC_ are exposed to the browser.
       // For other React setups, ensure your build process handles process.env correctly.
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL;
       
       const response = await axios.post(
         `${apiUrl}/api/query`,

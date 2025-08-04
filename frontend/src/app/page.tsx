@@ -17,7 +17,7 @@ export default function Home() {
   useEffect(() => {
     const checkStatus = async () => {
       try {
-        const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+        const apiUrl = process.env.NEXT_PUBLIC_API_UR;
         console.log('Checking backend status at:', apiUrl);
         
         const response = await axios.get(
