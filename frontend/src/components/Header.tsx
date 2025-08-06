@@ -19,8 +19,8 @@ const Header: React.FC = () => {
     <header className="bg-gray-900 border-b border-gray-800 py-4 px-6 flex items-center justify-between">
       <div className="flex items-center space-x-2">
 
-        <Image src={logoIcon.src} alt={'logoIcon'} width={30}/>
-        <Image src={logo.src} alt={'logo'} width={140}/>
+        <img src={logoIcon.src} alt={'logoIcon'} width={30}/>
+        <img src={logo.src} alt={'logo'} width={140}/>
       </div>
       <div className="flex items-center space-x-4">
         <a 

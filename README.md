@@ -98,19 +98,27 @@ If you prefer to deploy the services manually:
 1. **"Not Found" error on frontend**
    - Ensure Clerk authentication is properly configured with valid API keys
    - Check that you've set both `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY` and `CLERK_SECRET_KEY`
+   - Make sure your deployed domain is added to the allowed URLs in your Clerk dashboard
+   - Verify that the Next.js build is correctly configured with `output: 'standalone'` in `next.config.ts`
+   - Check that the start command in `render.yaml` is set to `cd frontend && node .next/standalone/server.js`
+   - Ensure the `PORT` environment variable is set to `3000` in the frontend service
+
+2. **Clerk SignUp component error**
+   - If you see an error about the SignUp component not being configured correctly, ensure:
+     - Your root route is a catch-all route (the project now uses `[[...sign-in]]` folder structure)
+     - The middleware is properly configured to allow authentication routes
+     - Your Clerk dashboard has the correct redirect URLs configured
+
+3. **Clerk Authentication Setup**
+   - In your Clerk dashboard, add your deployed frontend URL (e.g., `https://askmydoc-frontend.onrender.com`) to:
+     - Allowed URLs in your application settings
+     - Sign-in and Sign-up redirect URLs
+     - After sign-in and After sign-up redirect URLs
    - Verify that your Clerk application settings allow the deployed domain
 
-2. **"Cannot GET /" error on backend**
-   - This should be fixed with the root route handler, but if it persists, check your backend logs
-   - Ensure the backend service is properly deployed and running
-
-3. **CORS errors in console**
-   - Verify that the backend CORS configuration includes your frontend URL without a trailing slash
-   - Check that the `NEXT_PUBLIC_API_URL` in your frontend environment points to the correct backend URL
-
-4. **Authentication issues**
-   - Make sure you've created a Clerk application and configured the authentication properly
-   - Check that your Clerk application's allowed URLs include your deployed frontend URL
+4. **Deployment Configuration**
+   - For detailed deployment instructions and troubleshooting, refer to the `RENDER_DEPLOYMENT.md` file
+   - For Clerk authentication setup, refer to the `CLERK_SETUP.md` file
 
 ## License
 
