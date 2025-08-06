@@ -14,12 +14,35 @@ require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Middleware
-app.use(cors({
-  origin: ['https://askmydoc-pi.vercel.app/'],
-  methods: ['GET', 'POST'],
-  credentials: true
-}));
+// CORS Configuration
+const allowedOrigins = [
+  'https://askmydoc-pi.vercel.app',
+  'http://localhost:3000',
+  // Add any other origins as needed
+];
+
+const corsOptions = {
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like mobile apps, curl, etc)
+    if (!origin) return callback(null, true);
+    
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      console.log('CORS blocked origin:', origin);
+      callback(null, true); // Temporarily allow all origins while debugging
+    }
+  },
+  methods: ['GET', 'POST', 'OPTIONS'],
+  credentials: true,
+  optionsSuccessStatus: 204
+};
+
+// Apply CORS middleware
+app.use(cors(corsOptions));
+
+// Handle CORS preflight requests
+app.options('*', cors(corsOptions));
 app.use(express.json());
 
 // Add request logging middleware
