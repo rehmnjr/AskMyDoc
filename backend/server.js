@@ -16,7 +16,7 @@ const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(cors({
-  origin: ['https://askmydoc-7xfu.onrender.com', 'https://askmydoc-frontend.onrender.com', 'http://localhost:3000'],
+  origin: ['https://askmydoc-pi.vercel.app/'],
   methods: ['GET', 'POST'],
   credentials: true
 }));
