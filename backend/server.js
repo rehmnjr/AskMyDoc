@@ -418,8 +418,8 @@ process.on('unhandledRejection', (reason, promise) => {
 });
 
 // Start server
-const server = app.listen(PORT, async () => {
-  console.log(`Server running on port ${PORT}`);
+const server = app.listen(PORT,  '0.0.0.0', async () => {
+  console.log(`Server URL: http://localhost:${PORT}`);
   try {
     await loadVectorStore();
     console.log('Server initialization complete');
@@ -430,4 +430,7 @@ const server = app.listen(PORT, async () => {
 
 server.on('error', (error) => {
   console.error('Server error:', error);
+  if (error.code === 'EADDRINUSE') {
+    console.error(`Port ${PORT} is already in use`);
+  }
 });
