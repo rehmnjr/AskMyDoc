@@ -16,9 +16,8 @@ const PORT = process.env.PORT || 5000;
 
 // CORS Configuration
 const allowedOrigins = [
-  'https://askmydoc-pi.vercel.app',
+  'https://askmydoc-pi.vercel.app/',
   'http://localhost:3000',
-  // Add any other origins as needed
 ];
 
 const corsOptions = {

@@ -2,10 +2,10 @@
 
 ## Problem
 
-The frontend deployed at `https://askmydoc-pi.vercel.app` was unable to communicate with the backend at `https://askmydoc-backend-lr1q.onrender.com` due to CORS (Cross-Origin Resource Sharing) policy restrictions. This resulted in errors like:
+The frontend deployed at `https://askmydoc-pi.vercel.app/` was unable to communicate with the backend at `https://askmydoc-backend-lr1q.onrender.com` due to CORS (Cross-Origin Resource Sharing) policy restrictions. This resulted in errors like:
 
 ```
-Access to XMLHttpRequest at 'https://askmydoc-backend-lr1q.onrender.com/api/status' from origin 'https://askmydoc-pi.vercel.app' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+Access to XMLHttpRequest at 'https://askmydoc-backend-lr1q.onrender.com/api/status' from origin 'https://askmydoc-pi.vercel.app/' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
 ```
 
 ## Solution
@@ -24,7 +24,7 @@ The following changes were made to `backend/server.js`:
 ```javascript
 // CORS Configuration
 const allowedOrigins = [
-  'https://askmydoc-pi.vercel.app',
+  'https://askmydoc-pi.vercel.app/',
   'http://localhost:3000',
   // Add any other origins as needed
 ];
@@ -70,7 +70,7 @@ git push
    - Wait for the deployment to complete
 
 3. Test the application:
-   - Open your frontend application at `https://askmydoc-pi.vercel.app`
+   - Open your frontend application at `https://askmydoc-pi.vercel.app/`
    - Verify that API calls to the backend are working correctly
    - Check the browser console for any remaining CORS errors
 

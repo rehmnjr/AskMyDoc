@@ -2,11 +2,11 @@
 
 ## Problem
 
-The frontend deployed at `https://askmydoc-pi.vercel.app` is unable to communicate with the backend at `https://askmydoc-backend-lr1q.onrender.com` due to CORS errors. However, the root issue appears to be that the backend service is not running properly on Render.com. When accessing the API endpoints, we receive a default Render HTML page instead of the expected API responses.
+The frontend deployed at `https://askmydoc-pi.vercel.app/` is unable to communicate with the backend at `https://askmydoc-backend-lr1q.onrender.com` due to CORS errors. However, the root issue appears to be that the backend service is not running properly on Render.com. When accessing the API endpoints, we receive a default Render HTML page instead of the expected API responses.
 
 ## Diagnosis
 
-1. **CORS Configuration**: The CORS configuration in the backend server is correctly set up to allow requests from `https://askmydoc-pi.vercel.app` and `http://localhost:3000`.
+1. **CORS Configuration**: The CORS configuration in the backend server is correctly set up to allow requests from `https://askmydoc-pi.vercel.app/` and `http://localhost:3000`.
 
 2. **Backend Service Status**: When attempting to access the backend API endpoints, we receive HTML content instead of JSON responses, indicating that the backend service might be:
    - Spun down (free tier services on Render spin down after 15 minutes of inactivity)
